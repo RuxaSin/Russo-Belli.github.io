@@ -44,7 +44,7 @@ h3 {
 header {
   /* --- ФОНОВОЕ ИЗОБРАЖЕНИЕ --- */
   min-width: 1200px; /* Чтобы шапка не сжималась */
-  background-image: url("img/Блок1.jpg");
+  background-image: url("img/Блок1.png");
   /* Задаём путь к картинке для фона */
   background-size: cover; /* Растягиваем картинку на весь блок header, сохраняя пропорции */
   background-position: center; /* Центрируем изображение, чтобы важная часть была видна */
