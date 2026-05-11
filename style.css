@@ -1077,7 +1077,7 @@ html {
 
 /* Анимация появления изображения */
 .lightbox.active .lightbox-image {
-  transform: scale(1.5); /*  Увеличение на 150% при открытии */
+  transform: scale(0.75); /*  Увеличение на 70% при открытии */
   opacity: 1;
 }
 
