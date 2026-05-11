@@ -150,8 +150,9 @@ nav a:active {
   /* Ограничиваем ширину */
   width: 33.333%; /* Было: width: min(100%, 33.333%);  1/3 экрана, но не больше 100% на мобильных */
   min-width: 400px; /* Фиксируем минимальную ширину */
-  background: rgba(255, 255, 255, 0.1);
-  backdrop-filter: blur(07px); /* Эффект матового стекла */
+  background: rgba(255, 255, 255, 0.15);
+  backdrop-filter: blur(4px); /* Эффект матового стекла */
+  -webkit-backdrop-filter: blur(4px);
   color: #006064;
   padding: 80px 100px; /* Большие отступы отодвигают границы от текста */
   border-radius: 60% 40% 30% 70% / 60% 30% 70% 40%;
@@ -163,8 +164,9 @@ nav a:active {
   margin: 250px auto; /* Добавляем воздух сверху/снизу, отступы по бокам auto */
   /* Важно! Увеличиваем "вес" формы */
   transition: transform 0.3s ease; /* Плавность при наведении */
-  /* Анимация дыхания (форма медленно плавает) */
-  animation: morph 8s ease-in-out infinite;
+  animation: morph 8s ease-in-out infinite; /* Анимация дыхания (форма медленно плавает) */
+  transform: translateZ(0); /* Выносим блок на отдельный слой GPU (ускоряет отрисовку) */
+  will-change: transform; /* Подсказка браузеру оптимизировать */
 }
 
 /* Анимация изменения формы */
