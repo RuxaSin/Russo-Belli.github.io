@@ -13,7 +13,7 @@ body {
   padding: 20px;
 
   /* Фоновое изображение */
-  background-image: url("Задний фон.jpg");
+  background-image: url("img/Задний фон.jpg");
   background-size: cover; /* Растянуть на весь экран */
   background-attachment: fixed; /* Фон зафиксирован при прокрутке */
   background-position: center; /* Центрировать изображение */
@@ -29,7 +29,7 @@ h3 {
 /* === ШАПКА САЙТА === */
 header {
   /* --- ФОНОВОЕ ИЗОБРАЖЕНИЕ --- */
-  background-image: url("Блок1.jpg");
+  background-image: url("img/Блок1.jpg");
   /* Задаём путь к картинке для фона */
   background-size: cover; /* Растягиваем картинку на весь блок header, сохраняя пропорции */
   background-position: center; /* Центрируем изображение, чтобы важная часть была видна */
@@ -117,7 +117,7 @@ nav a:active {
 /* --- БЛОГ О СЕБЕ --- */
 #about {
   /* --- ФОНОВОЕ ИЗОБРАЖЕНИЕ --- */
-  background-image: url("Блок2.jpg");
+  background-image: url("img/Блок2.jpg");
   /* Задаём путь к космической картинке с планетами и звёздами */
   background-size: cover; /* Растягиваем картинку на весь блок, сохраняя пропорции */
   background-position: center; /* Центрируем изображение, чтобы планеты были видны */
@@ -399,7 +399,7 @@ tbody tr:hover td:not(:first-child):not(:last-child) {
 
 .contact-form {
   /* --- ФОНОВОЕ ИЗОБРАЖЕНИЕ --- */
-  background-image: url("Блок3.jpg");
+  background-image: url("img/Блок3.jpg");
   /* Задаём путь к космической картинке с планетами и звёздами */
 
   background-size: cover;
@@ -1101,7 +1101,7 @@ html {
 
 /* === ПОДВАЛ САЙТА === */
 footer {
-  background-image: url("Блок4.jpg");
+  background-image: url("img/Блок4.jpg");
   background-size: cover;
   background-position: center;
   background-attachment: scroll; /* Фон прокручивается вместе с прокруткой фексировано */
