@@ -13,7 +13,7 @@ body {
   padding: 20px;
 
   /* Фоновое изображение */
-  background-image: url("https://avatars.mds.yandex.net/i?id=15bf10f2e6ded82f24bd324b5db21e38_l-8318446-images-thumbs&ref=rim&n=13&w=1920&h=1080");
+  background-image: url("Задний фон.jpg");
   background-size: cover; /* Растянуть на весь экран */
   background-attachment: fixed; /* Фон зафиксирован при прокрутке */
   background-position: center; /* Центрировать изображение */
@@ -29,8 +29,8 @@ h3 {
 /* === ШАПКА САЙТА === */
 header {
   /* --- ФОНОВОЕ ИЗОБРАЖЕНИЕ --- */
-  background-image: url("https://static.vecteezy.com/system/resources/previews/002/118/133/original/black-and-gold-decorative-mandala-flower-style-background-free-vector.jpg");
-  /* Задаём путь к космической картинке для фона */
+  background-image: url("Блок1.jpg");
+  /* Задаём путь к картинке для фона */
   background-size: cover; /* Растягиваем картинку на весь блок header, сохраняя пропорции */
   background-position: center; /* Центрируем изображение, чтобы важная часть была видна */
   background-attachment: scroll; /* Фон прокручивается вместе с содержимым (в отличие от fixed в footer) */
@@ -117,7 +117,7 @@ nav a:active {
 /* --- БЛОГ О СЕБЕ --- */
 #about {
   /* --- ФОНОВОЕ ИЗОБРАЖЕНИЕ --- */
-  background-image: url("https://h3.hqtexture.com/110/10959/1572618836-06.jpg");
+  background-image: url("Блок2.jpg");
   /* Задаём путь к космической картинке с планетами и звёздами */
   background-size: cover; /* Растягиваем картинку на весь блок, сохраняя пропорции */
   background-position: center; /* Центрируем изображение, чтобы планеты были видны */
@@ -399,7 +399,7 @@ tbody tr:hover td:not(:first-child):not(:last-child) {
 
 .contact-form {
   /* --- ФОНОВОЕ ИЗОБРАЖЕНИЕ --- */
-  background-image: url("https://static.vecteezy.com/system/resources/previews/001/500/629/non_2x/background-template-with-mandala-pattern-design-free-vector.jpg");
+  background-image: url("Блок3.jpg");
   /* Задаём путь к космической картинке с планетами и звёздами */
 
   background-size: cover;
@@ -1101,7 +1101,7 @@ html {
 
 /* === ПОДВАЛ САЙТА === */
 footer {
-  background-image: url("https://avatars.mds.yandex.net/i?id=a59c740f93886d22964409d9e80d6d8a_l-5233298-images-thumbs&n=13");
+  background-image: url("Блок4.jpg");
   background-size: cover;
   background-position: center;
   background-attachment: scroll; /* Фон прокручивается вместе с прокруткой фексировано */
