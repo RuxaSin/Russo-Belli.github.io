@@ -17,6 +17,10 @@ main {
 
 /* === БАЗОВЫЕ НАСТРОЙКИ СТРАНИЦЫ === */
 body {
+  min-width: 1200px; /* Не меньше 1200px */
+  max-width: 1920px; /* Не больше 1920px (Full HD) */
+  margin: 0 auto; /* Центрируем */
+  overflow-x: auto;
   font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
   line-height: 1.6;
   color: #333;
