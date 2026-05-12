@@ -541,6 +541,13 @@
       });
     });
   </script>
+  <script>
+      // Принудительно возвращаем в начало при загрузке
+      window.addEventListener('load', function() {
+      window.scrollTo(0, 0);
+    });
+  </script>
+    
 </body>
 
 </html>
