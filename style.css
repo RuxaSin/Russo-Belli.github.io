@@ -135,13 +135,20 @@ nav a:active {
   background-position: center; /* Центрируем изображение, чтобы планеты были видны */
   background-attachment: scroll; /*Фон прокручивается вместе с прокруткой фексировано */
   background-repeat: no-repeat; /* Запрещаем повторение картинки */
-  border-radius: 70px;
-  width: 45%; /* Было: min(100%, 45.333%) */
+  border-radius: 50px;
+  width: 50%; 
   color: #c59a8e;
   background-repeat: no-repeat;
-  padding: 20px; 
+  padding: 25px 20px; 
   min-width: auto;
   max-width: 100%; 
+}
+
+@media (min-width: 769px) {
+  #about {
+    width: 100%;
+    max-width: 100%;
+  }
 }
 
 /* === ОБЩИЕ СТИЛИ ДЛЯ СЕКЦИЙ === */
