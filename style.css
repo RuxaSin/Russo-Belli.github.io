@@ -150,8 +150,7 @@ nav a:active {
 @media (min-width: 769px) {
   #about {
     width: 50%;
-    max-width: 1000px;
-    margin: 140px; /* Центрируем на десктопе */ 
+    max-width: 1000px; 
   }
 }
 
