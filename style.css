@@ -1579,3 +1579,52 @@ footer p {
   main section { margin-bottom: 30px !important; }
   header { margin-bottom: 30px !important; }
 }
+
+/* === ФИНАЛЬНЫЕ ФИКСЫ ДЛЯ МОБИЛЬНЫХ === */
+@media (max-width: 480px) {
+  /* Убираем любые горизонтальные скроллы */
+  body, main, header, section, footer {
+    min-width: auto !important;
+    max-width: 100vw !important;
+    overflow-x: hidden !important;
+  }
+  
+  /* Уменьшаем огромные отступы */
+  .contact-form, .social, header, main section {
+    margin-bottom: 30px !important;
+  }
+  
+  /* Уменьшаем padding у секций */
+  #skills {
+    padding: 20px 15px !important;
+  }
+  
+  /* Чат-кнопка не перекрывает контент */
+  #chat-toggle-btn {
+    bottom: 70px !important;
+    right: 10px !important;
+  }
+  .chat-window {
+    width: calc(100% - 20px) !important;
+    max-width: 320px;
+    height: 60vh;
+    bottom: 80px !important;
+    right: 10px !important;
+  }
+  
+  /* Кнопки и ссылки — удобные для пальца */
+  a, button, .social-link, nav a {
+    min-height: 44px;
+    min-width: 44px;
+    padding: 10px 12px;
+  }
+  
+  /* Учитываем "челку" на iPhone */
+  @supports (padding: max(0px)) {
+    body {
+      padding-left: max(15px, env(safe-area-inset-left));
+      padding-right: max(15px, env(safe-area-inset-right));
+      padding-bottom: max(15px, env(safe-area-inset-bottom));
+    }
+  }
+}
