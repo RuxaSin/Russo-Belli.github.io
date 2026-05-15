@@ -178,7 +178,6 @@ nav a:active {
   }
   /* Показываем описание сразу под навыком на мобильных */
   .skill-item::after {
-    content: attr(data-mobile-desc);
     display: block;
     font-size: 0.9rem;
     color: #666;
@@ -1576,4 +1575,11 @@ footer p {
     bottom: 80px;
     right: 15px;
   }
+}
+
+@media (max-width: 768px) {
+  .contact-form { margin-bottom: 40px !important; }
+  .social { margin-bottom: 50px !important; }
+  main section { margin-bottom: 30px !important; }
+  header { margin-bottom: 30px !important; }
 }
