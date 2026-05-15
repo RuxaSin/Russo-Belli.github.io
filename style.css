@@ -131,24 +131,27 @@ nav a:active {
   /* --- ФОНОВОЕ ИЗОБРАЖЕНИЕ --- */
   background-image: url("img/Блок2.jpg");
   /* Задаём путь к космической картинке с планетами и звёздами */
-  background-size: cover; /* Растягиваем картинку на весь блок, сохраняя пропорции */
-  background-position: center; /* Центрируем изображение, чтобы планеты были видны */
-  background-attachment: scroll; /*Фон прокручивается вместе с прокруткой фексировано */
-  background-repeat: no-repeat; /* Запрещаем повторение картинки */
-  border-radius: 50px; 
+  background-size: cover;
+  background-position: center;
+  background-attachment: scroll;
+  background-repeat: no-repeat;
+  border-radius: 50px;
   color: #c59a8e;
-  padding: 25px 20px; 
+  padding: 25px 20px;
   
-  width: 50%;
+  /* МОБИЛЬНЫЕ (по умолчанию): на всю ширину */
+  width: 100%;
   min-width: auto;
   max-width: 100%;
-  margin-bottom: 140px;
+  margin-bottom: 40px;
 }
 
+/* ДЕСКТОП: узкий блок как на скрине */
 @media (min-width: 769px) {
   #about {
-    width: 50%;  /* Или 45% — как было изначально */
-    max-width: 2000px; /* Ограничиваем максимальную ширину */ 
+    width: 50%;
+    max-width: 1000px;
+    margin: 140px; /* Центрируем на десктопе */ 
   }
 }
 
