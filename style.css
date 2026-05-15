@@ -149,7 +149,6 @@ nav a:active {
 #skills {
   max-width: 900px; /* Ограничим ширину, чтобы blob не размазался */ 
   width: 100%; /* Ограничиваем ширину */
-  min-width: 100px; /* Фиксируем минимальную ширину */
   min-width: auto;
   background: rgba(255, 255, 255, 0.15);
   backdrop-filter: blur(4px); /* Эффект матового стекла */
