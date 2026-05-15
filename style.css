@@ -1009,11 +1009,7 @@ html {
 @media (max-width: 768px) {
   .carousel {
     aspect-ratio: 4/3; /* Более квадратная на телефонах */
-    min-height: 250px;
-  }
-  
-  .carousel-slide {
-    height: 280px; /* Меньше высота на телефонах */
+    min-height: 200px;
   }
 
   .carousel-btn {
