@@ -135,25 +135,20 @@ nav a:active {
   background-position: center; /* Центрируем изображение, чтобы планеты были видны */
   background-attachment: scroll; /*Фон прокручивается вместе с прокруткой фексировано */
   background-repeat: no-repeat; /* Запрещаем повторение картинки */
-  border-radius: 50px;
-  width: 50%; 
+  border-radius: 50px; 
   color: #c59a8e;
-  background-repeat: no-repeat;
   padding: 25px 20px; 
+  
+  width: 50%;
   min-width: auto;
-  max-width: 100%; 
+  max-width: 100%;
+  margin-bottom: 140px;
 }
 
 @media (min-width: 769px) {
   #about {
-    max-width: 100%;
-  }
-}
-@media (min-width: 480px) {
-  #about {
-    max-width: 100%;
-    min-width: 100%;
-    margin-bottom: 20px;
+    width: 50%;  /* Или 45% — как было изначально */
+    max-width: 2000px; /* Ограничиваем максимальную ширину */ 
   }
 }
 
