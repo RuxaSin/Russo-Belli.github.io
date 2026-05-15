@@ -137,10 +137,10 @@ nav a:active {
   background-repeat: no-repeat; /* Запрещаем повторение картинки */
   border-radius: 70px;
   width: 45%; /* Было: min(100%, 45.333%) */
-  min-width: 500px; /* Фиксируем минимальную ширину */
   color: #c59a8e;
   background-repeat: no-repeat;
-  padding: 20px;
+  padding: 20px; 
+  min-width: auto;
   max-width: 100%; 
 }
 
