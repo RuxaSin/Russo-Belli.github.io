@@ -1703,12 +1703,13 @@ footer p {
     text-align: center;
   }
 
-  /* Скрываем тултипы при наведении на мобильном */
+  /* ПОЛНОСТЬЮ отключаем тултипы при наведении на мобильном */
   .skill-item:hover .skill-tooltip,
   .skill-item:focus .skill-tooltip {
     opacity: 0 !important;
     visibility: hidden !important;
     pointer-events: none !important;
+    display: none !important;
   }
 
   /* Стилизация самого навыка под аккордеон */
@@ -1721,6 +1722,7 @@ footer p {
     cursor: pointer !important;
     transition: none !important;
     box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+    overflow: hidden;
   }
 
   .skill-name {
@@ -1731,6 +1733,7 @@ footer p {
     position: relative !important;
     z-index: 2 !important;
     user-select: none;
+    background: transparent !important;
   }
 
   /* Стрелочка-индикатор */
@@ -1747,9 +1750,9 @@ footer p {
 
   /* Тултип превращается в раскрывающийся контент */
   .skill-tooltip {
-    display: none !important;
+    display: none !important; /* Скрыто по умолчанию */
     position: static !important;
-    opacity: 1 !important;
+    opacity: 0;
     visibility: visible !important;
     transform: none !important;
     width: 100% !important;
@@ -1760,25 +1763,29 @@ footer p {
     border-top: 1px solid rgba(102, 126, 234, 0.15) !important;
     color: #333 !important;
     font-size: 0.9rem !important;
-    line-height: 1.5 !important;
+    line-height: 1.6 !important;
     text-align: left !important;
     pointer-events: auto !important;
+    transition: opacity 0.2s ease !important;
   }
 
   .skill-tooltip strong {
     display: block !important;
-    margin-bottom: 6px !important;
+    margin-bottom: 8px !important;
     color: #667eea !important;
     font-size: 1rem !important;
+    font-weight: 600 !important;
   }
 
   .skill-tooltip br {
     display: block !important;
+    content: "" !important;
   }
 
   /* Показываем контент при активном классе */
   .skill-item.active .skill-tooltip {
     display: block !important;
+    opacity: 1 !important;
   }
 
   /* Поворот стрелки */
@@ -1792,5 +1799,10 @@ footer p {
     background: #fff !important;
     transform: none !important;
     outline: none !important;
+  }
+  
+  .skill-item:hover .skill-name,
+  .skill-item:focus .skill-name {
+    background: transparent !important;
   }
 }
