@@ -552,40 +552,53 @@
     });
   </script>
   <script>
-    document.addEventListener('DOMContentLoaded', () => {
-      // Проверяем, что мы на мобильном
-      if (window.matchMedia('(max-width: 768px)').matches) {
-        const items = document.querySelectorAll('.skill-item');
-      
-        console.log('Найдено навыков:', items.length); // Для отладки
-      
-        items.forEach((item, index) => {
-          const header = item.querySelector('.skill-name');
-          const tooltip = item.querySelector('.skill-tooltip');
-        
-          console.log(`Навык ${index}:`, header, tooltip); // Для отладки
-        
-          if (header) {
-            header.addEventListener('click', function(e) {
-              e.preventDefault();
-              e.stopPropagation();
-            
-              console.log('Клик по навыку', index); // Для отладки
-            
-              // Закрываем все остальные
-              items.forEach(other => {
-                if (other !== item) {
-                  other.classList.remove('active');
-                }
-              });
-            
-              // Переключаем текущий
-              item.classList.toggle('active');
-              console.log('Active класс:', item.classList.contains('active'));
-            });
+    // 📱 Аккордеон для навыков (только на мобильных)
+    document.addEventListener('DOMContentLoaded', function() {
+      const isMobile = window.matchMedia('(max-width: 768px)').matches;
+      if (!isMobile) return; // На десктопе ничего не меняем
+      const skillItems = document.querySelectorAll('.skill-item');
+      skillItems.forEach(item => {
+        const name = item.querySelector('.skill-name');
+        if (!name) return;
+        name.addEventListener('click', function(e) {
+          e.preventDefault();
+          e.stopPropagation();
+          // Если кликнули по этому элементу
+          const isActive = item.classList.contains('active');
+          // Закрываем все остальные
+          skillItems.forEach(other => {
+            if (other !== item) {
+              other.classList.remove('active');
+              other.setAttribute('aria-expanded', 'false');
+            }
+          });
+          // Переключаем текущий
+          if (isActive) {
+            item.classList.remove('active');
+            item.setAttribute('aria-expanded', 'false');
+          } else {
+            item.classList.add('active');
+            item.setAttribute('aria-expanded', 'true');
           }
         });
-      }
+        // Поддержка клавиатуры (Enter/Space)
+        name.addEventListener('keydown', function(e) {
+          if (e.key === 'Enter' || e.key === ' ') {
+            e.preventDefault();
+            name.click();
+          }
+        });
+      });
+      // Пересчитываем при повороте экрана
+      window.addEventListener('resize', function() {
+        if (!window.matchMedia('(max-width: 768px)').matches) {
+          // Если перешли на десктоп — сбрасываем активные классы
+          skillItems.forEach(item => {
+            item.classList.remove('active');
+            item.setAttribute('aria-expanded', 'false');
+          });
+        }
+      });
     });
   </script>
     
