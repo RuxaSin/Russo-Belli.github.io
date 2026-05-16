@@ -215,6 +215,7 @@ nav a:active {
 #skills h3 {
   color: #c59a8e;
   text-shadow: 0 2px 4px rgba(0, 0, 0, 0.5);
+  margin-left: 10%; /* Оставляем 10% пустого места справа -> текст уходит влево */
 }
 
 main section {
