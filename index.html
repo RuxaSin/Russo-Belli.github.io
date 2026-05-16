@@ -553,17 +553,21 @@
   </script>
   <script>
     document.addEventListener('DOMContentLoaded', () => {
-      // Работает только на устройствах без мыши (телефоны/планшеты)
-      if (window.matchMedia('(hover: none)').matches) {
+      // Ищем только на мобильных устройствах (чтобы не ломать десктоп)
+      if (window.matchMedia('(max-width: 768px)').matches) {
         const skillItems = document.querySelectorAll('.skill-item');
+      
         skillItems.forEach(item => {
-          item.addEventListener('click', (e) => {
-            // Закрываем остальные (режим "аккордеон")
+          item.addEventListener('click', () => {
+            // 1. Закрываем все остальные открытые вкладки
             skillItems.forEach(other => {
-              if (other !== item) other.classList.remove('expanded');
+              if (other !== item) {
+                other.classList.remove('active');
+              }
             });
-            // Переключаем текущий
-            item.classList.toggle('expanded');
+          
+            // 2. Переключаем текущую (открываем или закрываем)
+            item.classList.toggle('active');
           });
         });
       }
