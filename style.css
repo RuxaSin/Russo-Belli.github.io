@@ -1655,11 +1655,6 @@ footer p {
     margin-bottom: 30px !important;
   }
   
-  /* Уменьшаем padding у секций */
-  #skills {
-    padding: 20px 15px !important;
-  }
-  
   /* Чат-кнопка не перекрывает контент */
   #chat-toggle-btn {
     bottom: 70px !important;
