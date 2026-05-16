@@ -334,6 +334,61 @@ main section:hover {
 
   .skill-tooltip {
     display: none; /* Прячем тултипы — на тач-устройствах ховер неудобен */
+    position: static; /* Не вылетает вбок */
+    transform: none;
+    opacity: 0;
+    visibility: hidden;
+    max-height: 0;
+    overflow: hidden;
+    padding: 0 15px;
+    margin: 0;
+    background: transparent;
+    box-shadow: none;
+    border: none;
+    pointer-events: auto;
+    transition: max-height 0.4s ease, opacity 0.3s ease, padding 0.3s ease;
+  }
+  /* Раскрытое состояние */
+  .skill-item.expanded .skill-tooltip {
+    opacity: 1;
+    visibility: visible;
+    max-height: 600px; /* Достаточно для любого контента */
+    padding: 15px;
+    margin-top: 10px;
+    background: rgba(255, 255, 255, 0.92);
+    border-radius: 12px;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.15);
+    border-left: 3px solid #667eea;
+  }
+
+  /* Курсор-указатель и запрет выделения текста при двойном тапе */
+  .skill-item {
+    cursor: pointer;
+    user-select: none;
+    -webkit-tap-highlight-color: transparent;
+  }
+
+  /* Стрелочка-индикатор справа */
+  .skill-item::after {
+    content: "▾";
+    position: absolute;
+    right: 15px;
+    top: 50%;
+    transform: translateY(-50%) rotate(0deg);
+    font-size: 1.1rem;
+    color: #667eea;
+    transition: transform 0.3s ease;
+    pointer-events: none;
+  }
+
+  .skill-item.expanded::after {
+    transform: translateY(-50%) rotate(180deg);
+  }
+
+  /* Убираем старый ховер-сдвиг на мобильных */
+  .skill-item:hover,
+  .skill-item:focus {
+    transform: none;
   }
 }
 
