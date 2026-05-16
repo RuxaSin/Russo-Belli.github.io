@@ -35,7 +35,20 @@ h1,
 h3 {
   color: #2c3e50;
   margin-bottom: 15px;
+  font-family: 'Arial', sans-serif;
 }
+a {
+  color: #80deea;
+  text-decoration: none;
+  transition: color 0.3s ease;
+}
+
+a:hover {
+  color: #4dd0e1;
+  text-decoration: underline;
+}
+
+
 /* === ШАПКА САЙТА === */
 header {
   /* --- ФОНОВОЕ ИЗОБРАЖЕНИЕ --- */
