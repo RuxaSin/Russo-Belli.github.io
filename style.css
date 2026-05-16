@@ -180,25 +180,6 @@ nav a:active {
   will-change: transform; /* Подсказка браузеру оптимизировать */
 }
 
-/* Скрываем тултипы на тач-устройствах */
-@media (hover: none) {
-  .skill-tooltip {
-    display: none !important;
-  }
-  .skill-item {
-    cursor: pointer;
-  }
-  /* Показываем описание сразу под навыком на мобильных */
-  .skill-item::after {
-    display: block;
-    font-size: 0.9rem;
-    color: #666;
-    margin-top: 8px;
-    padding-left: 10px;
-    border-left: 2px solid #667eea;
-  }
-}
-
 /* Анимация изменения формы */
 @keyframes morph {
   0% {
@@ -325,90 +306,6 @@ main section:hover {
 .skill-item:focus .skill-tooltip {
   box-shadow: 0 12px 50px rgba(102, 126, 234, 0.25);
   border-color: #667eea;
-}
-
-/* === МОБИЛЬНЫЙ АККОРДЕОН ДЛЯ НАВЫКОВ === */
-@media (max-width: 768px) {
-  
-  /* 1. Сам блок: полный экран, без анимации и blob-формы */
-  #skills {
-    width: 100% !important;
-    min-width: auto !important;
-    max-width: 100% !important;
-    border-radius: 20px !important; /* Обычные скругленные углы */
-    padding: 20px !important;
-    margin: 20px 0 !important;
-    animation: none !important; /* Отключаем "дыхание" */
-    border: 1px solid rgba(255, 255, 255, 0.3);
-    transform: none !important; /* Отключаем повороты */
-  }
-
-  /* 2. Элемент списка: убираем сдвиг влево */
-  #skills li:hover {
-    padding-left: 0 !important; 
-    background: transparent !important;
-  }
-  
-  .skill-item {
-    cursor: pointer;
-    user-select: none; /* Чтобы текст не выделялся при тапе */
-    -webkit-tap-highlight-color: transparent; /* Убирает синюю подсветку на Android */
-  }
-
-  /* 3. Тултип: превращаем в раскрывающийся блок снизу */
-  .skill-tooltip {
-    position: static; /* Не вылетает вбок, а остается внутри */
-    opacity: 0;
-    max-height: 0; /* Скрыто */
-    overflow: hidden;
-    padding: 0;
-    margin-top: 0;
-    background: rgba(255, 255, 255, 0.9); /* Светлый фон для чтения */
-    border-radius: 10px;
-    box-shadow: none;
-    transform: none;
-    visibility: hidden;
-    transition: max-height 0.4s ease, opacity 0.3s ease, padding 0.3s ease, margin-top 0.3s ease;
-    color: #333; /* Темный текст для контраста */
-    border-left: none;
-  }
-  
-  .skill-tooltip::before {
-    display: none; /* Убираем стрелочку сбоку */
-  }
-
-  /* 4. Стрелка-индикатор (показывает, что можно нажать) */
-  .skill-item::after {
-    content: '▼'; /* Стрелочка вниз */
-    position: absolute;
-    right: 15px;
-    top: 50%;
-    transform: translateY(-50%) rotate(0deg);
-    font-size: 0.8rem;
-    color: #fff;
-    transition: transform 0.3s ease;
-  }
-
-  /* === АКТИВНОЕ СОСТОЯНИЕ (КОГДА НАЖАТО) === */
-  
-  /* Раскрываем контент */
-  .skill-item.active .skill-tooltip {
-    opacity: 1;
-    visibility: visible;
-    max-height: 1000px; /* Достаточно большое число для раскрытия */
-    padding: 15px;
-    margin-top: 10px;
-  }
-
-  /* Поворачиваем стрелочку вверх */
-  .skill-item.active::after {
-    transform: translateY(-50%) rotate(180deg);
-  }
-
-  /* Меняем фон активной кнопки */
-  .skill-item.active {
-    background: linear-gradient(135deg, #667eea40, #764ba240);
-  }
 }
 
 /* === ТАБЛИЦА ПОРТФОЛИО === */
@@ -1791,4 +1688,128 @@ footer p {
       padding-bottom: max(15px, env(safe-area-inset-bottom));
     }
   }
+
+  /* =========================================
+   📱 МОБИЛЬНЫЙ АККОРДЕОН: НАВЫКИ
+   ========================================= */
+@media (max-width: 768px) {
+  /* 1. Контейнер: полный экран, без blob-анимации */
+  #skills {
+    width: 100% !important;
+    max-width: 100% !important;
+    min-width: auto !important;
+    margin: 30px 0 !important;
+    padding: 20px 15px !important;
+    border-radius: 16px !important;
+    background: rgba(255, 255, 255, 0.03) !important;
+    border: 1px solid rgba(255, 255, 255, 0.08) !important;
+    box-shadow: none !important;
+    animation: none !important;
+    transform: none !important;
+    backdrop-filter: blur(6px);
+  }
+
+  #skills h3 {
+    text-align: center !important;
+    margin-right: 0 !important;
+    margin-bottom: 20px !important;
+    font-size: 1.4rem;
+    color: #c59a8e;
+  }
+
+  /* 2. Карточка навыка */
+  .skill-item {
+    position: relative;
+    background: rgba(255, 255, 255, 0.04);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    border-radius: 12px;
+    margin-bottom: 10px;
+    overflow: hidden;
+    transition: background 0.2s;
+  }
+
+  .skill-item:active {
+    background: rgba(255, 255, 255, 0.09);
+  }
+
+  /* 3. Заголовок карточки (кликабельная зона) */
+  .skill-name {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 16px 18px;
+    cursor: pointer;
+    user-select: none;
+    -webkit-tap-highlight-color: transparent;
+    font-weight: 600;
+    color: #fff;
+    font-size: 1rem;
+  }
+
+  /* Стрелка-индикатор */
+  .skill-name::after {
+    content: '▾';
+    font-size: 1.1rem;
+    color: #667eea;
+    transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  }
+  .skill-item.active .skill-name::after {
+    transform: rotate(180deg);
+  }
+
+  /* 4. Раскрывающийся контент (бывший тултип) */
+  .skill-tooltip {
+    position: static;
+    width: 100%;
+    max-height: 0;
+    overflow: hidden;
+    opacity: 0;
+    padding: 0 18px;
+    background: rgba(0, 0, 0, 0.25);
+    border-top: 1px solid rgba(255, 255, 255, 0.05);
+    transition: max-height 0.4s cubic-bezier(0.4, 0, 0.2, 1), 
+                opacity 0.3s ease, 
+                padding 0.3s ease;
+    border-radius: 0;
+    box-shadow: none;
+    border: none;
+    margin: 0;
+    transform: none;
+    visibility: visible;
+    pointer-events: auto;
+  }
+
+  .skill-item.active .skill-tooltip {
+    max-height: 1200px; /* Достаточно для любого контента */
+    opacity: 1;
+    padding: 16px 18px;
+  }
+
+  /* Стилизация списка внутри */
+  .skill-tooltip ul, .skill-tooltip li {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+  }
+  .skill-tooltip li {
+    padding: 8px 0;
+    border-bottom: 1px dashed rgba(255, 255, 255, 0.1);
+    font-size: 0.92rem;
+    line-height: 1.5;
+    color: #d0d0d0;
+  }
+  .skill-tooltip li:last-child {
+    border-bottom: none;
+  }
+  .skill-tooltip li::before {
+    content: '•';
+    color: #667eea;
+    margin-right: 8px;
+    font-weight: bold;
+  }
+
+  /* Убираем старые десктопные эффекты */
+  #skills li:hover { padding-left: 0 !important; background: transparent !important; }
+  .skill-tooltip::before { display: none; }
+  .skill-item:hover, .skill-item:focus { transform: none !important; }
 }
