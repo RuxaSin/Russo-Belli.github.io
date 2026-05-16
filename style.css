@@ -142,7 +142,7 @@ nav a:active {
 /* --- БЛОГ О СЕБЕ --- */
 #about {
   /* --- ФОНОВОЕ ИЗОБРАЖЕНИЕ --- */
-  background-image: url("img/Блок2.jpg");
+  background-image: url("img/Блок2.png");
   /* Задаём путь к космической картинке с планетами и звёздами */
   background-size: cover;
   background-position: center;
