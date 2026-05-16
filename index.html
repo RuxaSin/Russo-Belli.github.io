@@ -553,20 +553,37 @@
   </script>
   <script>
     document.addEventListener('DOMContentLoaded', () => {
-      // Активируем только на мобильных устройствах
+      // Проверяем, что мы на мобильном
       if (window.matchMedia('(max-width: 768px)').matches) {
         const items = document.querySelectorAll('.skill-item');
       
-        items.forEach(item => {
+        console.log('Найдено навыков:', items.length); // Для отладки
+      
+        items.forEach((item, index) => {
           const header = item.querySelector('.skill-name');
-          header.addEventListener('click', () => {
-            // Закрываем все остальные открытые вкладки
-            items.forEach(other => {
-              if (other !== item) other.classList.remove('active');
+          const tooltip = item.querySelector('.skill-tooltip');
+        
+          console.log(`Навык ${index}:`, header, tooltip); // Для отладки
+        
+          if (header) {
+            header.addEventListener('click', function(e) {
+              e.preventDefault();
+              e.stopPropagation();
+            
+              console.log('Клик по навыку', index); // Для отладки
+            
+              // Закрываем все остальные
+              items.forEach(other => {
+                if (other !== item) {
+                  other.classList.remove('active');
+                }
+              });
+            
+              // Переключаем текущий
+              item.classList.toggle('active');
+              console.log('Active класс:', item.classList.contains('active'));
             });
-            // Переключаем текущую (открываем/закрываем)
-            item.classList.toggle('active');
-          });
+          }
         });
       }
     });
