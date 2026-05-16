@@ -326,69 +326,88 @@ main section:hover {
   box-shadow: 0 12px 50px rgba(102, 126, 234, 0.25);
   border-color: #667eea;
 }
-/* На планшетах и мобильных — отключаем тултипы и делаем полную ширину */
-@media (max-width: 1024px) {
+
+/* === МОБИЛЬНЫЙ АККОРДЕОН ДЛЯ НАВЫКОВ === */
+@media (max-width: 768px) {
+  
+  /* 1. Сам блок: полный экран, без анимации и blob-формы */
   #skills {
-    width: 100%; /* Полная ширина на узких экранах */
+    width: 100% !important;
+    min-width: auto !important;
+    max-width: 100% !important;
+    border-radius: 20px !important; /* Обычные скругленные углы */
+    padding: 20px !important;
+    margin: 20px 0 !important;
+    animation: none !important; /* Отключаем "дыхание" */
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    transform: none !important; /* Отключаем повороты */
   }
 
-  .skill-tooltip {
-    display: none; /* Прячем тултипы — на тач-устройствах ховер неудобен */
-    position: static; /* Не вылетает вбок */
-    transform: none;
-    opacity: 0;
-    visibility: hidden;
-    max-height: 0;
-    overflow: hidden;
-    padding: 0 15px;
-    margin: 0;
-    background: transparent;
-    box-shadow: none;
-    border: none;
-    pointer-events: auto;
-    transition: max-height 0.4s ease, opacity 0.3s ease, padding 0.3s ease;
+  /* 2. Элемент списка: убираем сдвиг влево */
+  #skills li:hover {
+    padding-left: 0 !important; 
+    background: transparent !important;
   }
-  /* Раскрытое состояние */
-  .skill-item.expanded .skill-tooltip {
-    opacity: 1;
-    visibility: visible;
-    max-height: 600px; /* Достаточно для любого контента */
-    padding: 15px;
-    margin-top: 10px;
-    background: rgba(255, 255, 255, 0.92);
-    border-radius: 12px;
-    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.15);
-    border-left: 3px solid #667eea;
-  }
-
-  /* Курсор-указатель и запрет выделения текста при двойном тапе */
+  
   .skill-item {
     cursor: pointer;
-    user-select: none;
-    -webkit-tap-highlight-color: transparent;
+    user-select: none; /* Чтобы текст не выделялся при тапе */
+    -webkit-tap-highlight-color: transparent; /* Убирает синюю подсветку на Android */
   }
 
-  /* Стрелочка-индикатор справа */
+  /* 3. Тултип: превращаем в раскрывающийся блок снизу */
+  .skill-tooltip {
+    position: static; /* Не вылетает вбок, а остается внутри */
+    opacity: 0;
+    max-height: 0; /* Скрыто */
+    overflow: hidden;
+    padding: 0;
+    margin-top: 0;
+    background: rgba(255, 255, 255, 0.9); /* Светлый фон для чтения */
+    border-radius: 10px;
+    box-shadow: none;
+    transform: none;
+    visibility: hidden;
+    transition: max-height 0.4s ease, opacity 0.3s ease, padding 0.3s ease, margin-top 0.3s ease;
+    color: #333; /* Темный текст для контраста */
+    border-left: none;
+  }
+  
+  .skill-tooltip::before {
+    display: none; /* Убираем стрелочку сбоку */
+  }
+
+  /* 4. Стрелка-индикатор (показывает, что можно нажать) */
   .skill-item::after {
-    content: "▾";
+    content: '▼'; /* Стрелочка вниз */
     position: absolute;
     right: 15px;
     top: 50%;
     transform: translateY(-50%) rotate(0deg);
-    font-size: 1.1rem;
-    color: #667eea;
+    font-size: 0.8rem;
+    color: #fff;
     transition: transform 0.3s ease;
-    pointer-events: none;
   }
 
-  .skill-item.expanded::after {
+  /* === АКТИВНОЕ СОСТОЯНИЕ (КОГДА НАЖАТО) === */
+  
+  /* Раскрываем контент */
+  .skill-item.active .skill-tooltip {
+    opacity: 1;
+    visibility: visible;
+    max-height: 1000px; /* Достаточно большое число для раскрытия */
+    padding: 15px;
+    margin-top: 10px;
+  }
+
+  /* Поворачиваем стрелочку вверх */
+  .skill-item.active::after {
     transform: translateY(-50%) rotate(180deg);
   }
 
-  /* Убираем старый ховер-сдвиг на мобильных */
-  .skill-item:hover,
-  .skill-item:focus {
-    transform: none;
+  /* Меняем фон активной кнопки */
+  .skill-item.active {
+    background: linear-gradient(135deg, #667eea40, #764ba240);
   }
 }
 
