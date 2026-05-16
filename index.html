@@ -551,6 +551,24 @@
       window.scrollTo(0, 0);
     });
   </script>
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      // Работает только на устройствах без мыши (телефоны/планшеты)
+      if (window.matchMedia('(hover: none)').matches) {
+        const skillItems = document.querySelectorAll('.skill-item');
+        skillItems.forEach(item => {
+          item.addEventListener('click', (e) => {
+            // Закрываем остальные (режим "аккордеон")
+            skillItems.forEach(other => {
+              if (other !== item) other.classList.remove('expanded');
+            });
+            // Переключаем текущий
+            item.classList.toggle('expanded');
+          });
+        });
+      }
+    });
+  </script>
     
 </body>
 
