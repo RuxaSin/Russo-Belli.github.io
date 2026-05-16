@@ -1689,127 +1689,105 @@ footer p {
     }
   }
 
-  /* =========================================
-   📱 МОБИЛЬНЫЙ АККОРДЕОН: НАВЫКИ
-   ========================================= */
+/* === 📱 МОБИЛЬНЫЙ ВИД НАВЫКОВ (КАК FAQ) === */
 @media (max-width: 768px) {
-  /* 1. Контейнер: полный экран, без blob-анимации */
+  /* 1. Контейнер: убираем blob, делаем прозрачным и на всю ширину */
   #skills {
     width: 100% !important;
     max-width: 100% !important;
     min-width: auto !important;
-    margin: 30px 0 !important;
-    padding: 20px 15px !important;
-    border-radius: 16px !important;
-    background: rgba(255, 255, 255, 0.03) !important;
-    border: 1px solid rgba(255, 255, 255, 0.08) !important;
+    background: transparent !important;
+    backdrop-filter: none !important;
+    border: none !important;
     box-shadow: none !important;
-    animation: none !important;
-    transform: none !important;
-    backdrop-filter: blur(6px);
+    animation: none !important; /* Отключаем "дыхание" */
+    border-radius: 0 !important;
+    padding: 20px 0 !important;
+    margin: 20px 0 !important;
   }
 
   #skills h3 {
-    text-align: center !important;
-    margin-right: 0 !important;
-    margin-bottom: 20px !important;
-    font-size: 1.4rem;
-    color: #c59a8e;
+    text-align: left !important;
+    margin-bottom: 15px !important;
+    color: #c59a8e !important;
+    text-shadow: none !important;
   }
 
-  /* 2. Карточка навыка */
+  /* 2. Карточка навыка = аналог <details> */
   .skill-item {
-    position: relative;
-    background: rgba(255, 255, 255, 0.04);
-    border: 1px solid rgba(255, 255, 255, 0.08);
-    border-radius: 12px;
-    margin-bottom: 10px;
+    background: rgba(255, 255, 255, 0.85) !important;
+    padding: 14px !important;
+    margin: 10px 0 !important;
+    border-radius: 10px !important;
+    border-left: 4px solid #667eea !important;
+    box-shadow: none !important;
+    transition: background 0.2s ease !important;
+    position: relative !important;
     overflow: hidden;
-    transition: background 0.2s;
   }
 
-  .skill-item:active {
-    background: rgba(255, 255, 255, 0.09);
+  .skill-item:hover {
+    background: rgba(255, 255, 255, 0.95) !important;
+    transform: none !important; /* Убираем десктопный сдвиг */
+    padding-left: 14px !important;
   }
 
-  /* 3. Заголовок карточки (кликабельная зона) */
+  /* 3. Заголовок = аналог <summary> */
   .skill-name {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    padding: 16px 18px;
-    cursor: pointer;
+    display: block !important;
+    font-weight: 600 !important;
+    color: #2c3e50 !important;
+    cursor: pointer !important;
+    position: relative !important;
+    padding-left: 24px !important;
+    font-size: 1rem !important;
     user-select: none;
-    -webkit-tap-highlight-color: transparent;
-    font-weight: 600;
-    color: #fff;
-    font-size: 1rem;
+    -webkit-tap-highlight-color: transparent; /* Убирает синюю подсветку на Android */
   }
 
-  /* Стрелка-индикатор */
-  .skill-name::after {
-    content: '▾';
-    font-size: 1.1rem;
-    color: #667eea;
-    transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-  }
-  .skill-item.active .skill-name::after {
-    transform: rotate(180deg);
+  /* Стрелка-треугольник */
+  .skill-name::before {
+    content: "▶" !important;
+    position: absolute !important;
+    left: 0 !important;
+    top: 50% !important;
+    transform: translateY(-50%) !important;
+    font-size: 0.8rem !important;
+    transition: transform 0.2s ease !important;
   }
 
-  /* 4. Раскрывающийся контент (бывший тултип) */
+  .skill-item.active .skill-name::before {
+    transform: translateY(-50%) rotate(90deg) !important;
+  }
+
+  /* 4. Раскрывающийся текст = аналог контента <details> */
   .skill-tooltip {
-    position: static;
-    width: 100%;
-    max-height: 0;
-    overflow: hidden;
-    opacity: 0;
-    padding: 0 18px;
-    background: rgba(0, 0, 0, 0.25);
-    border-top: 1px solid rgba(255, 255, 255, 0.05);
-    transition: max-height 0.4s cubic-bezier(0.4, 0, 0.2, 1), 
-                opacity 0.3s ease, 
-                padding 0.3s ease;
-    border-radius: 0;
-    box-shadow: none;
-    border: none;
-    margin: 0;
-    transform: none;
-    visibility: visible;
-    pointer-events: auto;
+    position: static !important;
+    width: 100% !important;
+    max-height: 0 !important;
+    overflow: hidden !important;
+    opacity: 0 !important;
+    padding: 0 !important;
+    margin-top: 0 !important;
+    background: transparent !important;
+    border: none !important;
+    box-shadow: none !important;
+    transform: none !important;
+    visibility: visible !important;
+    transition: max-height 0.35s ease, opacity 0.3s ease, padding 0.3s ease, margin-top 0.3s ease !important;
+    font-size: 0.95rem;
+    line-height: 1.5;
+    color: #444;
   }
 
   .skill-item.active .skill-tooltip {
-    max-height: 1200px; /* Достаточно для любого контента */
-    opacity: 1;
-    padding: 16px 18px;
+    max-height: 1500px !important; /* Достаточно для любого объёма */
+    opacity: 1 !important;
+    padding: 12px 0 0 24px !important;
+    margin-top: 10px !important;
   }
 
-  /* Стилизация списка внутри */
-  .skill-tooltip ul, .skill-tooltip li {
-    list-style: none;
-    padding: 0;
-    margin: 0;
-  }
-  .skill-tooltip li {
-    padding: 8px 0;
-    border-bottom: 1px dashed rgba(255, 255, 255, 0.1);
-    font-size: 0.92rem;
-    line-height: 1.5;
-    color: #d0d0d0;
-  }
-  .skill-tooltip li:last-child {
-    border-bottom: none;
-  }
-  .skill-tooltip li::before {
-    content: '•';
-    color: #667eea;
-    margin-right: 8px;
-    font-weight: bold;
-  }
-
-  /* Убираем старые десктопные эффекты */
-  #skills li:hover { padding-left: 0 !important; background: transparent !important; }
-  .skill-tooltip::before { display: none; }
-  .skill-item:hover, .skill-item:focus { transform: none !important; }
+  /* Убираем старые десктопные элементы */
+  .skill-tooltip::before { display: none !important; } /* Стрелка сбоку */
+  #skills li:hover { padding-left: 14px !important; background: rgba(255,255,255,0.85) !important; }
 }
