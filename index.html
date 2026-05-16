@@ -557,31 +557,53 @@
       const isMobile = window.matchMedia('(max-width: 768px)').matches;
       if (!isMobile) return; // На десктопе ничего не меняем
       const skillItems = document.querySelectorAll('.skill-item');
-      skillItems.forEach(item => {
+      skillItems.forEach((item, index) => {
         const name = item.querySelector('.skill-name');
-        if (!name) return;
+        const tooltip = item.querySelector('.skill-tooltip');
+        if (!name || !tooltip) return;
+        // Принудительно скрываем все тултипы при загрузке
+        tooltip.style.display = 'none';
+        item.classList.remove('active');
         name.addEventListener('click', function(e) {
           e.preventDefault();
           e.stopPropagation();
-          // Если кликнули по этому элементу
           const isActive = item.classList.contains('active');
-          // Закрываем все остальные
+          // Закрываем все остальные СНАЧАЛА
           skillItems.forEach(other => {
             if (other !== item) {
               other.classList.remove('active');
               other.setAttribute('aria-expanded', 'false');
+              const otherTooltip = other.querySelector('.skill-tooltip');
+              if (otherTooltip) {
+                // Принудительно скрываем
+                otherTooltip.style.display = 'none';
+                // Force reflow
+                void otherTooltip.offsetWidth;
+              }
             }
           });
           // Переключаем текущий
           if (isActive) {
             item.classList.remove('active');
             item.setAttribute('aria-expanded', 'false');
+            // Принудительно скрываем
+            setTimeout(() => {
+              tooltip.style.display = 'none';
+            }, 0);
           } else {
             item.classList.add('active');
             item.setAttribute('aria-expanded', 'true');
+            // Принудительно показываем С force reflow
+            tooltip.style.display = 'block';
+            // Force reflow - заставляем браузер перерисовать
+            void tooltip.offsetWidth;
+            // Добавляем класс для анимации (если нужна)
+            requestAnimationFrame(() => {
+              tooltip.style.opacity = '1';
+            });
           }
         });
-        // Поддержка клавиатуры (Enter/Space)
+        // Поддержка клавиатуры
         name.addEventListener('keydown', function(e) {
           if (e.key === 'Enter' || e.key === ' ') {
             e.preventDefault();
@@ -589,13 +611,26 @@
           }
         });
       });
-      // Пересчитываем при повороте экрана
+      // При изменении размера окна
       window.addEventListener('resize', function() {
         if (!window.matchMedia('(max-width: 768px)').matches) {
-          // Если перешли на десктоп — сбрасываем активные классы
           skillItems.forEach(item => {
             item.classList.remove('active');
             item.setAttribute('aria-expanded', 'false');
+            const tooltip = item.querySelector('.skill-tooltip');
+            if (tooltip) {
+              tooltip.style.display = '';
+              tooltip.style.opacity = '';
+            }
+          });
+        } else {
+          // Если снова мобильный - сбрасываем
+          skillItems.forEach(item => {
+            item.classList.remove('active');
+            const tooltip = item.querySelector('.skill-tooltip');
+            if (tooltip) {
+              tooltip.style.display = 'none';
+            }
           });
         }
       });
