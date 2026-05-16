@@ -46,9 +46,14 @@
     <section id="skills">
       <h3>Мои навыки</h3>
       <ul class="skills-list">
-        <li class="skill-item" tabindex="0" role="button" aria-expanded="false">
+        <li class="skill-item" tabindex="0">
           <span class="skill-name">Веб-разработка</span>
-          <span class="skill-tooltip">
+          <span class="skill-tooltip" data-mobile-content="
+        <strong>Веб-дизайн</strong><br>
+        • Прототипирование в Figma<br>
+        • Адаптивная вёрстка (HTML5/CSS3/JS)<br>
+        • UI/UX-принципы, цветовые схемы
+      ">
             <strong>Веб-дизайн</strong><br>
             • Прототипирование в Figma<br>
             • Адаптивная вёрстка (HTML5/CSS3/JS)<br>
@@ -56,9 +61,22 @@
           </span>
         </li>
 
-        <li class="skill-item" tabindex="0" role="button" aria-expanded="false">
+        <li class="skill-item" tabindex="0">
           <span class="skill-name">SEO</span>
-          <span class="skill-tooltip">
+          <span class="skill-tooltip" data-mobile-content="
+        <strong>SEO-оптимизация</strong><br>
+        • Технический аудит сайта;<br>
+        • Подбор ключевых слов (Яндекс.Wordstat);<br>
+        • Мета-теги, микроразметка, скорость загрузки;<br>
+        • Сбор семантических ядер;<br>
+        • Аналитика алгоритмов поисковых систем;<br>
+        • Внутренняя оптимизация сайтов;<br>
+        • Формирование технических заданий для улучшения сайтов;<br>
+        • Текстовая оптимизация посадочных страниц;<br>
+        • Анализ сайтов конкурентов;<br>
+        • Анализ и улучшение коммерческих и поведенческих факторов;<br>
+        • Многое другое;
+      ">
             <strong>SEO-оптимизация</strong><br>
             • Технический аудит сайта;<br>
             • Подбор ключевых слов (Яндекс.Wordstat);<br>
@@ -74,9 +92,14 @@
           </span>
         </li>
 
-        <li class="skill-item" tabindex="0" role="button" aria-expanded="false">
+        <li class="skill-item" tabindex="0">
           <span class="skill-name">Sony Vegas</span>
-          <span class="skill-tooltip">
+          <span class="skill-tooltip" data-mobile-content="
+        <strong>Видеомонтаж</strong><br>
+        • Монтаж роликов для YouTube/Reels/Rutube<br>
+        • Цветокоррекция, стабилизация<br>
+        • Работа со звуком и титрами
+      ">
             <strong>Видеомонтаж</strong><br>
             • Монтаж роликов для YouTube/Reels/Rutube<br>
             • Цветокоррекция, стабилизация<br>
@@ -552,55 +575,29 @@
     });
   </script>
   <script>
-    // 📱 Аккордеон для навыков (только на мобильных)
+    // 📱 Аккордеон для навыков (как в FAQ, только на мобильных)
     document.addEventListener('DOMContentLoaded', function() {
       const isMobile = window.matchMedia('(max-width: 768px)').matches;
-      if (!isMobile) return; // На десктопе ничего не меняем
+      if (!isMobile) return; // На десктопе ничего не трогаем
       const skillItems = document.querySelectorAll('.skill-item');
-      skillItems.forEach((item, index) => {
+      skillItems.forEach(item => {
         const name = item.querySelector('.skill-name');
-        const tooltip = item.querySelector('.skill-tooltip');
-        if (!name || !tooltip) return;
-        // Принудительно скрываем все тултипы при загрузке
-        tooltip.style.display = 'none';
-        item.classList.remove('active');
+        if (!name) return;
         name.addEventListener('click', function(e) {
           e.preventDefault();
           e.stopPropagation();
           const isActive = item.classList.contains('active');
-          // Закрываем все остальные СНАЧАЛА
+          // Закрываем все остальные
           skillItems.forEach(other => {
             if (other !== item) {
               other.classList.remove('active');
-              other.setAttribute('aria-expanded', 'false');
-              const otherTooltip = other.querySelector('.skill-tooltip');
-              if (otherTooltip) {
-                // Принудительно скрываем
-                otherTooltip.style.display = 'none';
-                // Force reflow
-                void otherTooltip.offsetWidth;
-              }
             }
           });
           // Переключаем текущий
           if (isActive) {
             item.classList.remove('active');
-            item.setAttribute('aria-expanded', 'false');
-            // Принудительно скрываем
-            setTimeout(() => {
-              tooltip.style.display = 'none';
-            }, 0);
           } else {
             item.classList.add('active');
-            item.setAttribute('aria-expanded', 'true');
-            // Принудительно показываем С force reflow
-            tooltip.style.display = 'block';
-            // Force reflow - заставляем браузер перерисовать
-            void tooltip.offsetWidth;
-            // Добавляем класс для анимации (если нужна)
-            requestAnimationFrame(() => {
-              tooltip.style.opacity = '1';
-            });
           }
         });
         // Поддержка клавиатуры
@@ -614,23 +611,9 @@
       // При изменении размера окна
       window.addEventListener('resize', function() {
         if (!window.matchMedia('(max-width: 768px)').matches) {
+          // Если перешли на десктоп — сбрасываем
           skillItems.forEach(item => {
             item.classList.remove('active');
-            item.setAttribute('aria-expanded', 'false');
-            const tooltip = item.querySelector('.skill-tooltip');
-            if (tooltip) {
-              tooltip.style.display = '';
-              tooltip.style.opacity = '';
-            }
-          });
-        } else {
-          // Если снова мобильный - сбрасываем
-          skillItems.forEach(item => {
-            item.classList.remove('active');
-            const tooltip = item.querySelector('.skill-tooltip');
-            if (tooltip) {
-              tooltip.style.display = 'none';
-            }
           });
         }
       });
