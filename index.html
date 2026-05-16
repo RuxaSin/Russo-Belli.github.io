@@ -575,50 +575,27 @@
     });
   </script>
   <script>
-    // 📱 Аккордеон для навыков (как в FAQ, только на мобильных)
-    document.addEventListener('DOMContentLoaded', function() {
-      const isMobile = window.matchMedia('(max-width: 768px)').matches;
-      if (!isMobile) return; // На десктопе ничего не трогаем
-      const skillItems = document.querySelectorAll('.skill-item');
-      skillItems.forEach(item => {
-        const name = item.querySelector('.skill-name');
-        if (!name) return;
-        name.addEventListener('click', function(e) {
-          e.preventDefault();
-          e.stopPropagation();
-          const isActive = item.classList.contains('active');
-          // Закрываем все остальные
-          skillItems.forEach(other => {
-            if (other !== item) {
-              other.classList.remove('active');
-            }
-          });
-          // Переключаем текущий
-          if (isActive) {
-            item.classList.remove('active');
-          } else {
-            item.classList.add('active');
-          }
-        });
-        // Поддержка клавиатуры
-        name.addEventListener('keydown', function(e) {
-          if (e.key === 'Enter' || e.key === ' ') {
-            e.preventDefault();
-            name.click();
-          }
-        });
-      });
-      // При изменении размера окна
-      window.addEventListener('resize', function() {
-        if (!window.matchMedia('(max-width: 768px)').matches) {
-          // Если перешли на десктоп — сбрасываем
-          skillItems.forEach(item => {
-            item.classList.remove('active');
-          });
-        }
-      });
-    });
-  </script>
+     document.addEventListener('DOMContentLoaded', () => {
+       const skillsList = document.querySelector('.skills-list');
+       if (!skillsList) return;
+       // Одно слушатель на весь список (быстрее и надежнее)
+       skillsList.addEventListener('click', (e) => {
+         const target = e.target.closest('.skill-name');
+         if (!target) return;
+         // Проверяем ширину динамически при каждом клике
+         if (window.innerWidth > 768) return; // На ПК клик игнорируется
+         const item = target.closest('.skill-item');
+         if (!item) return;
+         const isActive = item.classList.contains('active');
+         // Закрываем все остальные пункты (режим аккордеона)
+         document.querySelectorAll('.skill-item.active').forEach(openItem => {
+           if (openItem !== item) openItem.classList.remove('active');
+         });
+         // Переключаем текущий
+         item.classList.toggle('active', !isActive);
+       });
+     });
+   </script>
     
 </body>
 
