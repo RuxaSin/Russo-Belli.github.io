@@ -553,18 +553,18 @@
   </script>
   <script>
     document.addEventListener('DOMContentLoaded', () => {
-      // Работает только на экранах <= 768px
+      // Активируем только на мобильных устройствах
       if (window.matchMedia('(max-width: 768px)').matches) {
         const items = document.querySelectorAll('.skill-item');
       
         items.forEach(item => {
           const header = item.querySelector('.skill-name');
           header.addEventListener('click', () => {
-            // Закрываем все остальные
-            items.forEach(i => {
-              if (i !== item) i.classList.remove('active');
+            // Закрываем все остальные открытые вкладки
+            items.forEach(other => {
+              if (other !== item) other.classList.remove('active');
             });
-            // Переключаем текущий
+            // Переключаем текущую (открываем/закрываем)
             item.classList.toggle('active');
           });
         });
