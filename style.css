@@ -1708,7 +1708,7 @@ footer p {
     padding: 20px 15px !important;
     
     /* Магия матового стекла */
-    background: rgba(255, 255, 255, 0.65) !important; /* Полупрозрачный белый */
+    background: rgba(255, 255, 255, 0.20) !important; /* Полупрозрачный белый */
     backdrop-filter: blur(12px) !important;            /* Размытие фона под блоком */
     -webkit-backdrop-filter: blur(12px) !important;    /* Для Safari/iOS */
     
