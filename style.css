@@ -159,6 +159,11 @@ nav a:active {
   margin-bottom: 140px;
 }
 
+#about p {
+  color: #d4a59a; /* чуть светлее — лучше читается */
+  text-shadow: 0 1px 2px rgba(0,0,0,0.4); /* лёгкая тень для объёма */
+}
+
 /* ДЕСКТОП: узкий блок как на скрине */
 @media (min-width: 769px) {
   #about {
