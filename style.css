@@ -1586,84 +1586,7 @@ footer p {
 }
 
 
-/* Добавь это в конец CSS */
-@media (max-width: 768px) {
-  #portfolio table {
-    display: block;
-    overflow-x: auto;
-    white-space: nowrap;
-    -webkit-overflow-scrolling: touch; /* Плавный скролл на iOS */
-  }
-  
-  #portfolio th,
-  #portfolio td {
-    padding: 10px 8px;
-    font-size: 0.9rem;
-    border-radius: 12px; /* Меньше скругление */
-  }
-  
-  /* Альтернатива: карточки вместо таблицы */
-  #portfolio table, 
-  #portfolio thead, 
-  #portfolio tbody, 
-  #portfolio tr {
-    display: block;
-  }
-  
-  #portfolio tr {
-    margin-bottom: 15px;
-    background: rgba(102, 126, 234, 0.1);
-    border-radius: 15px;
-    padding: 15px;
-  }
-  
-  #portfolio td {
-    display: flex;
-    justify-content: space-between;
-    padding: 8px 0;
-    border: none;
-    background: none;
-    border-radius: 0;
-  }
-  
-  #portfolio td:first-child {
-    font-weight: bold;
-    color: #c59a8e;
-    border-bottom: 1px dashed rgba(255,255,255,0.2);
-    padding-bottom: 10px;
-  }
-  
-  #portfolio td:last-child a {
-    background: #667eea;
-    padding: 6px 15px;
-    border-radius: 20px;
-    color: white;
-  }
-}
-/* Уменьши отступы на мобильных */
-@media (max-width: 768px) {
-  #chat-toggle-btn {
-    bottom: 70px;
-    right: 15px;
-    width: 50px;
-    height: 50px;
-  }
-  
-  .chat-window {
-    width: calc(100vw - 30px); /* Почти на весь экран */
-    max-width: 350px;
-    height: 70vh; /* 70% высоты экрана */
-    bottom: 80px;
-    right: 15px;
-  }
-}
 
-@media (max-width: 768px) {
-  .contact-form { margin-bottom: 40px !important; }
-  .social { margin-bottom: 50px !important; }
-  main section { margin-bottom: 30px !important; }
-  header { margin-bottom: 30px !important; }
-}
 
 /* === ФИНАЛЬНЫЕ ФИКСЫ ДЛЯ МОБИЛЬНЫХ === */
 @media (max-width: 480px) {
@@ -1709,6 +1632,106 @@ footer p {
   }
 
 
+
+
+
+
+/* === 📱 ЕДИНЫЙ АДАПТИВ ДЛЯ МОБИЛЬНЫХ (≤768px) === */
+@media (max-width: 768px) {
+  /* 🌍 БАЗОВЫЕ НАСТРОЙКИ */
+  body { padding: 10px; }
+  
+  /* 🏠 ШАПКА */
+  header { 
+    padding: 20px 15px; 
+    margin-bottom: 30px !important; 
+  }
+  header h1 { font-size: 1.8rem; }
+  header img { width: 120px; height: 120px; }
+  
+  /* 🧭 НАВИГАЦИЯ */
+  nav { 
+    display: flex; flex-direction: column; gap: 8px; 
+    width: 100%; max-width: 300px; margin: 30px auto; 
+  }
+  nav a { 
+    display: block; width: 100%; text-align: center; padding: 12px 20px; 
+  }
+  /* Скрываем лишние ссылки на мобильных (если нужно, закомментируй эти 3 строки) */
+  nav a[href="#portfolio"], 
+  nav a:last-of-type { 
+    display: none !important; 
+  }
+
+  /* 📦 СЕКЦИИ И ФОРМЫ */
+  main section { 
+    padding: 20px 15px; 
+    margin-bottom: 30px !important; 
+  }
+  .contact-form { margin-bottom: 40px !important; }
+  .social { margin-bottom: 50px !important; }
+  form { max-width: 100%; }
+  button { width: 100%; margin: 10px 0; }
+
+  /* 📊 ПОРТФОЛИО (КАРТОЧКИ ВМЕСТО ТАБЛИЦЫ) */
+  #portfolio table,
+  #portfolio thead,
+  #portfolio tbody,
+  #portfolio tr,
+  #portfolio td { display: block; }
+  
+  #portfolio thead { display: none; }
+  #portfolio table { width: 100%; font-size: 0.85rem; }
+  
+  #portfolio tbody tr {
+    margin-bottom: 15px;
+    background: rgba(102, 126, 234, 0.12);
+    border-radius: 15px;
+    padding: 15px;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+  }
+  
+  #portfolio tbody td {
+    display: flex; justify-content: space-between; align-items: center;
+    padding: 8px 0; border: none; background: none; border-radius: 0;
+    font-size: 0.9rem;
+  }
+  
+  #portfolio tbody td:first-child {
+    font-weight: bold; color: #c59a8e; font-size: 1rem;
+    border-bottom: 1px dashed rgba(255, 255, 255, 0.2);
+    margin-bottom: 10px; padding-bottom: 10px;
+  }
+  
+  #portfolio tbody td:last-child { justify-content: flex-end; }
+  #portfolio tbody td:last-child a {
+    background: #667eea; padding: 8px 20px; border-radius: 20px;
+    color: white; font-size: 0.85rem; text-decoration: none;
+    display: inline-block; transition: background 0.2s ease;
+  }
+
+  /* 🖼️ КАРУСЕЛЬ */
+  .carousel { aspect-ratio: 4/3; min-height: 200px; }
+  .carousel-btn { width: 40px; height: 40px; font-size: 1.2rem; }
+  .carousel-btn.prev { left: 10px; }
+  .carousel-btn.next { right: 10px; }
+
+  /* 🔍 ЛАЙТБОКС */
+  .lightbox-image { max-width: 95%; max-height: 70vh; }
+  .lightbox-close { top: 15px; right: 15px; width: 40px; height: 40px; font-size: 1.8rem; }
+  .lightbox-caption { font-size: 1rem; max-width: 90%; }
+
+  /* ⬆️ КНОПКА "НАВЕРХ" */
+  #scroll-to-top { width: 45px; height: 45px; right: 15px; bottom: 15px; font-size: 1.3rem; }
+
+  /* 💬 ЧАТ-БОТ */
+  #chat-toggle-btn { bottom: 70px; right: 15px; width: 50px; height: 50px; }
+  .chat-window {
+    width: calc(100vw - 30px); max-width: 350px; height: 70vh;
+    bottom: 80px; right: 15px;
+  }
+
+  
 /* === 📱 МОБИЛЬНЫЙ АККОРДЕОН ДЛЯ НАВЫКОВ (как в FAQ) === */
 @media (max-width: 768px) {
   /* Упрощаем контейнер: убираем "дышащую" анимацию и сложное стекло */
@@ -1813,102 +1836,3 @@ footer p {
     opacity: 1 !important; visibility: visible !important; transform: none !important; pointer-events: auto !important;
   }
 }
-
-
-
-/* === 📱 ЕДИНЫЙ АДАПТИВ ДЛЯ МОБИЛЬНЫХ (≤768px) === */
-@media (max-width: 768px) {
-  /* 🌍 БАЗОВЫЕ НАСТРОЙКИ */
-  body { padding: 10px; }
-  
-  /* 🏠 ШАПКА */
-  header { 
-    padding: 20px 15px; 
-    margin-bottom: 30px !important; 
-  }
-  header h1 { font-size: 1.8rem; }
-  header img { width: 120px; height: 120px; }
-  
-  /* 🧭 НАВИГАЦИЯ */
-  nav { 
-    display: flex; flex-direction: column; gap: 8px; 
-    width: 100%; max-width: 300px; margin: 30px auto; 
-  }
-  nav a { 
-    display: block; width: 100%; text-align: center; padding: 12px 20px; 
-  }
-  /* Скрываем лишние ссылки на мобильных (если нужно, закомментируй эти 3 строки) */
-  nav a[href="#portfolio"], 
-  nav a:last-of-type { 
-    display: none !important; 
-  }
-
-  /* 📦 СЕКЦИИ И ФОРМЫ */
-  main section { 
-    padding: 20px 15px; 
-    margin-bottom: 30px !important; 
-  }
-  .contact-form { margin-bottom: 40px !important; }
-  .social { margin-bottom: 50px !important; }
-  form { max-width: 100%; }
-  button { width: 100%; margin: 10px 0; }
-
-  /* 📊 ПОРТФОЛИО (КАРТОЧКИ ВМЕСТО ТАБЛИЦЫ) */
-  #portfolio table,
-  #portfolio thead,
-  #portfolio tbody,
-  #portfolio tr,
-  #portfolio td { display: block; }
-  
-  #portfolio thead { display: none; }
-  #portfolio table { width: 100%; font-size: 0.85rem; }
-  
-  #portfolio tbody tr {
-    margin-bottom: 15px;
-    background: rgba(102, 126, 234, 0.12);
-    border-radius: 15px;
-    padding: 15px;
-    box-shadow: 0 4px 12px rgba(0,0,0,0.08);
-  }
-  
-  #portfolio tbody td {
-    display: flex; justify-content: space-between; align-items: center;
-    padding: 8px 0; border: none; background: none; border-radius: 0;
-    font-size: 0.9rem;
-  }
-  
-  #portfolio tbody td:first-child {
-    font-weight: bold; color: #c59a8e; font-size: 1rem;
-    border-bottom: 1px dashed rgba(255, 255, 255, 0.2);
-    margin-bottom: 10px; padding-bottom: 10px;
-  }
-  
-  #portfolio tbody td:last-child { justify-content: flex-end; }
-  #portfolio tbody td:last-child a {
-    background: #667eea; padding: 8px 20px; border-radius: 20px;
-    color: white; font-size: 0.85rem; text-decoration: none;
-    display: inline-block; transition: background 0.2s ease;
-  }
-
-  /* 🖼️ КАРУСЕЛЬ */
-  .carousel { aspect-ratio: 4/3; min-height: 200px; }
-  .carousel-btn { width: 40px; height: 40px; font-size: 1.2rem; }
-  .carousel-btn.prev { left: 10px; }
-  .carousel-btn.next { right: 10px; }
-
-  /* 🔍 ЛАЙТБОКС */
-  .lightbox-image { max-width: 95%; max-height: 70vh; }
-  .lightbox-close { top: 15px; right: 15px; width: 40px; height: 40px; font-size: 1.8rem; }
-  .lightbox-caption { font-size: 1rem; max-width: 90%; }
-
-  /* ⬆️ КНОПКА "НАВЕРХ" */
-  #scroll-to-top { width: 45px; height: 45px; right: 15px; bottom: 15px; font-size: 1.3rem; }
-
-  /* 💬 ЧАТ-БОТ */
-  #chat-toggle-btn { bottom: 70px; right: 15px; width: 50px; height: 50px; }
-  .chat-window {
-    width: calc(100vw - 30px); max-width: 350px; height: 70vh;
-    bottom: 80px; right: 15px;
-  }
-
-  
