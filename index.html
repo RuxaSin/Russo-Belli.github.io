@@ -256,10 +256,10 @@
 
       <!-- Индикаторы (точки) -->
       <div class="carousel-indicators">
-        <span class="indicator active" data-slide="0"></span>
+        <!-- <span class="indicator active" data-slide="0"></span>
         <span class="indicator" data-slide="1"></span>
-        <span class="indicator" data-slide="2"></span>
-      </div>
+        <span class="indicator" data-slide="2"></span> -->
+      </div>  
     </div>
 
     <p class="carousel-caption">Листай ➡️ или нажми на точку</p>
@@ -330,14 +330,28 @@
 
   <script>
     // 🎠 Простая карусель изображений
-    document.addEventListener('DOMContentLoaded', function() {
+document.addEventListener('DOMContentLoaded', function() {
       const track = document.querySelector('.carousel-track');
       const slides = Array.from(track.children);
       const nextBtn = document.querySelector('.carousel-btn.next');
       const prevBtn = document.querySelector('.carousel-btn.prev');
+      // 1. Сначала получаем контейнер
+      const indicatorsContainer = document.querySelector('.carousel-indicators');
+      // 2. Авто-генерация индикаторов (если контейнер есть)
+      if (indicatorsContainer && slides.length > 0) {
+        indicatorsContainer.innerHTML = ''; // очищаем старые
+        slides.forEach((_, i) => {
+          const dot = document.createElement('span');
+          dot.className = `indicator ${i === 0 ? 'active' : ''}`;
+          dot.dataset.slide = i;
+          indicatorsContainer.appendChild(dot);
+        });
+      }
+      // 3. Теперь получаем актуальные индикаторы
       const indicators = document.querySelectorAll('.indicator');
       let currentIndex = 0;
       let autoPlayInterval;
+  
       // Переход к слайду по индексу
       function goToSlide(index) {
         // Зацикливаем: если вышли за границы — идём с начала/конца
