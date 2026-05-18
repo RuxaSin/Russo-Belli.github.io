@@ -1413,16 +1413,7 @@ footer p {
   transform: translateY(-2px);
 }
 
-/* 📱 Адаптив: на мобильных чуть меньше и ближе к краю */
-@media (max-width: 768px) {
-  #scroll-to-top {
-    width: 45px;
-    height: 45px;
-    right: 15px;
-    bottom: 15px;
-    font-size: 1.3rem;
-  }
-}
+
 
 /* === ЧАТ-БОТ === */
 
@@ -1587,7 +1578,6 @@ footer p {
 
 
 
-
 /* === ФИНАЛЬНЫЕ ФИКСЫ ДЛЯ МОБИЛЬНЫХ === */
 @media (max-width: 480px) {
   /* Убираем любые горизонтальные скроллы */
@@ -1630,8 +1620,6 @@ footer p {
       padding-bottom: max(15px, env(safe-area-inset-bottom));
     }
   }
-
-
 
 
 
