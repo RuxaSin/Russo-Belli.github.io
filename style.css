@@ -1618,4 +1618,9 @@ footer p {
   .social { margin-bottom: 50px !important; }
   form { max-width: 100%; }
   button { width: 100%; margin: 10px 0; }
+
+  /* === СКРЫВАЕМ QR-ТУЛТИПЫ НА МОБИЛЬНЫХ === */
+  .qr-tooltip {display: none !important;}
+  /* Опционально: убираем лишний отступ у кнопок, если он был для тултипа */
+  .social-link {position: static !important;}
 }
