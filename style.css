@@ -1568,8 +1568,18 @@ footer p {
   header img:hover { transform: scale(1.3) rotate(3deg); } /* Фикс вылета */
 
   /* 🧭 НАВИГАЦИЯ */
-  nav { display: flex; flex-direction: column; gap: 8px; width: 100%; max-width: 300px; margin: 20px auto; }
-  nav a { display: block; width: 100%; text-align: center; padding: 12px 20px; }
+  nav { 
+    display: flex; flex-direction: column; gap: 8px; 
+    width: 100%; max-width: 300px; margin: 30px auto; 
+  }
+  nav a { 
+    display: block; width: 100%; text-align: center; padding: 12px 20px; 
+  }
+  /* Скрываем лишние ссылки на мобильных (если нужно, закомментируй эти 3 строки) */
+  nav a[href="#portfolio"], 
+  nav a:last-of-type { 
+    display: none !important; 
+  }
 
   /* 📊 ПОРТФОЛИО (КАРТОЧКИ) */
   #portfolio table, #portfolio thead, #portfolio tbody, #portfolio tr, #portfolio td { display: block; }
