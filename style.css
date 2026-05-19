@@ -1098,26 +1098,6 @@ html {
   text-shadow: 0 2px 4px rgba(0, 0, 0, 0.5);
 }
 
-/* 📱 Адаптив для мобильных */
-@media (max-width: 768px) {
-  .lightbox-image {
-    max-width: 95%;
-    max-height: 70vh;
-  }
-
-  .lightbox-close {
-    top: 15px;
-    right: 15px;
-    width: 40px;
-    height: 40px;
-    font-size: 1.8rem;
-  }
-
-  .lightbox-caption {
-    font-size: 1rem;
-    max-width: 90%;
-  }
-}
 
 /* === ПОДВАЛ САЙТА === */
 footer {
