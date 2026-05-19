@@ -1163,71 +1163,7 @@ footer p {
   line-height: 1.5;
 }
 
-/* === АДАПТИВНОСТЬ (МОБИЛЬНЫЕ УСТРОЙСТВА) === */
-@media (max-width: 768px) {
-  body {
-    padding: 10px;
-  }
 
-  header {
-    padding: 20px 15px;
-  }
-
-  header h1 {
-    font-size: 1.8rem;
-  }
-
-  header img {
-    width: 120px;
-    height: 120px;
-  }
-
-  /* Меню становится вертикальным */
-  nav {
-    display: flex;
-    flex-direction: column;
-    gap: 8px;
-    width: 100%;
-    max-width: 300px;
-    margin: 30px auto;
-  }
-
-  nav a {
-    display: block;
-    width: 100%;
-    text-align: center;
-    padding: 12px 20px;
-  }
-
-  main section {
-    padding: 20px 15px;
-  }
-
-  /* Таблица получает горизонтальный скролл на мобильных */
-  table {
-    display: block;
-    overflow-x: auto;
-    white-space: nowrap;
-  }
-
-  /* Форма на всю ширину */
-  form {
-    max-width: 100%;
-  }
-
-  button {
-    width: 100%;
-    margin: 10px 0;
-  }
-}
-
-@media (max-width: 768px) {
-  /* Скрываем "Портфолио" по атрибуту href, а "Вопрос/Ответ" как последний <a> в меню */
-  nav a[href="#portfolio"],
-  nav a:last-of-type {
-    display: none !important;
-  }
-}
 
 /* === КНОПКА "НАВЕРХ" === */
 #scroll-to-top {
