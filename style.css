@@ -1005,26 +1005,7 @@ html {
   font-style: italic;
 }
 
-/* === АДАПТИВ ДЛЯ МОБИЛЬНЫХ === */
-@media (max-width: 768px) {
-  .carousel {
-    aspect-ratio: 4/3; /* Более квадратная на телефонах */
-    min-height: 200px;
-  }
 
-  .carousel-btn {
-    width: 40px;
-    height: 40px;
-    font-size: 1.2rem;
-  }
-
-  .carousel-btn.prev {
-    left: 10px;
-  }
-  .carousel-btn.next {
-    right: 10px;
-  }
-}
 /* === ЛАЙТБОКС (ЗУМ ИЗОБРАЖЕНИЯ) === */
 .lightbox {
   /* 📍 Фиксированное позиционирование на весь экран */
