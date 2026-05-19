@@ -429,11 +429,8 @@ tbody tr:hover td:not(:first-child):not(:last-child) {
 }
 
 
-/* === ФОРМА КОНТАКТОВ === */
-/* ========================================
-   СЕКЦИЯ ФОРМЫ ОБРАТНОЙ СВЯЗИ 
-   ======================================== */
 
+    /* СЕКЦИЯ ФОРМЫ ОБРАТНОЙ СВЯЗИ */
 .contact-form {
   /* --- ФОНОВОЕ ИЗОБРАЖЕНИЕ --- */
   background-image: url("img/Blok_3.webp");
@@ -740,19 +737,7 @@ button:active {
   pointer-events: auto; /* Теперь можно взаимодействовать (если нужно) */
 }
 
-/* Скрываем QR-коды на тач-устройствах */
-@media (hover: none) and (max-width: 768px) {
-  .qr-tooltip {
-    display: none !important;
-  }
-  
-  /* Убираем hover эффект для кнопок соцсетей на мобильных */
-  .social-link:hover .qr-tooltip {
-    display: none !important;
-    opacity: 0;
-    visibility: hidden;
-  }
-}
+
 
 /* === FAQ — ПОЗИЦИОНИРОВАНИЕ СЛЕВА === */
 /* === КОНТЕЙНЕР ДЛЯ ДВУХ КОЛОНОК === */
