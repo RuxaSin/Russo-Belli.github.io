@@ -1599,7 +1599,7 @@ footer p {
   #portfolio tbody td:last-child a { background: #667eea; padding: 8px 20px; border-radius: 20px; color: white; text-decoration: none; display: inline-block; }
 
   /* 🎠 КАРУСЕЛЬ */
-  .carousel { aspect-ratio: 4/3 !important; min-height: 200px; /* Убираем тяжёлый blur на мобильных */ backdrop-filter: none !important; -webkit-backdrop-filter: none !important; background: rgba(255, 255, 255, 0.95) !important; }
+  .carousel { aspect-ratio: 4/3 !important; min-height: 200px; }
   .carousel-btn { width: 40px; height: 40px; font-size: 1.2rem; }
   .carousel-btn.prev { left: 10px; }
   .carousel-btn.next { right: 10px; }
