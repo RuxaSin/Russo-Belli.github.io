@@ -10,6 +10,9 @@
   <link rel="canonical" href="https://ruxasin.github.io/Russo-Belli.github.io/">
   <title>Моя Визитка</title>
   <link rel="stylesheet" href="style.css">
+  <link rel="preload" as="image" href="img/Sertifikat_dizayn.webp">
+  <link rel="preload" as="image" href="img/Sertifikat_Web.webp">
+  <link rel="preload" as="image" href="img/Blander_3D_foto.webp">
   
   <!-- Yandex.Metrika counter -->
   <script type="text/javascript">
@@ -343,17 +346,17 @@
   </script>
 
   <script>
-    // 🎠 Простая карусель изображений
-document.addEventListener('DOMContentLoaded', function() {
+    // 🎠 Оптимизированная карусель
+    document.addEventListener('DOMContentLoaded', function() {
       const track = document.querySelector('.carousel-track');
       const slides = Array.from(track.children);
       const nextBtn = document.querySelector('.carousel-btn.next');
       const prevBtn = document.querySelector('.carousel-btn.prev');
-      // 1. Сначала получаем контейнер
       const indicatorsContainer = document.querySelector('.carousel-indicators');
-      // 2. Авто-генерация индикаторов (если контейнер есть)
-      if (indicatorsContainer && slides.length > 0) {
-        indicatorsContainer.innerHTML = ''; // очищаем старые
+      if (!track || slides.length === 0) return;
+      // Генерация индикаторов
+      if (indicatorsContainer) {
+        indicatorsContainer.innerHTML = '';
         slides.forEach((_, i) => {
           const dot = document.createElement('span');
           dot.className = `indicator ${i === 0 ? 'active' : ''}`;
@@ -361,77 +364,97 @@ document.addEventListener('DOMContentLoaded', function() {
           indicatorsContainer.appendChild(dot);
         });
       }
-      // 3. Теперь получаем актуальные индикаторы
       const indicators = document.querySelectorAll('.indicator');
       let currentIndex = 0;
       let autoPlayInterval;
-  
-      // Переход к слайду по индексу
+      // 🎯 Плавный переход с предзагрузкой
       function goToSlide(index) {
-        // Зацикливаем: если вышли за границы — идём с начала/конца
         if (index < 0) index = slides.length - 1;
         if (index >= slides.length) index = 0;
         currentIndex = index;
-        // Сдвигаем трек
         track.style.transform = `translateX(-${currentIndex * 100}%)`;
-        // Обновляем активный индикатор
+        // Обновляем индикаторы
         indicators.forEach((ind, i) => {
           ind.classList.toggle('active', i === currentIndex);
         });
+        // 🔄 Предзагружаем соседние слайды
+        preloadAdjacentSlides(index);
       }
-      // Проверка: сколько слайдов найдено?
-      console.log('Найдено слайдов:', slides.length);
-      // Если слайдов нет или один — выходим
-      if (slides.length === 0) {
-        console.error('❌ Слайды не найдены! Проверь HTML структуру.');
-        return;
-      }
-      // Обработчики кнопок
-      if (nextBtn) {
-        nextBtn.addEventListener('click', () => {
-          goToSlide(currentIndex + 1);
-          resetAutoPlay();
+      // 📦 Предзагрузка соседних изображений
+      function preloadAdjacentSlides(index) {
+        const nextIdx = (index + 1) % slides.length;
+        const prevIdx = (index - 1 + slides.length) % slides.length;
+        [nextIdx, prevIdx].forEach(i => {
+          const img = slides[i];
+          if (img && !img.dataset.preloaded) {
+            const preload = new Image();
+            preload.src = img.src;
+            img.dataset.preloaded = 'true';
+          }
         });
       }
-      if (prevBtn) {
-        prevBtn.addEventListener('click', () => {
-          goToSlide(currentIndex - 1);
-          resetAutoPlay();
-        });
-      }
-      // Обработчики индикаторов
-      indicators.forEach((indicator, index) => {
-        indicator.addEventListener('click', () => {
-          goToSlide(index);
+      // 🎮 Обработчики
+      nextBtn?.addEventListener('click', () => {
+        goToSlide(currentIndex + 1);
+        resetAutoPlay();
+      });
+      prevBtn?.addEventListener('click', () => {
+        goToSlide(currentIndex - 1);
+        resetAutoPlay();
+      });
+      indicators.forEach((ind, i) => {
+        ind.addEventListener('click', () => {
+          goToSlide(i);
           resetAutoPlay();
         });
       });
-      // Автопрокрутка (опционально — раскомментируй, если нужно)
+      // ⏱️ Автопрокрутка (увеличил интервал для мобильных)
+      const isMobile = window.innerWidth <= 768;
+      const autoPlayDelay = isMobile ? 8000 : 5000;
+
       function startAutoPlay() {
-        autoPlayInterval = setInterval(() => {
-          goToSlide(currentIndex + 1);
-        }, 5000); // 5 секунд между слайдами
+        autoPlayInterval = setInterval(() => goToSlide(currentIndex + 1), autoPlayDelay);
       }
 
       function resetAutoPlay() {
         clearInterval(autoPlayInterval);
         startAutoPlay();
       }
-      // Пауза при наведении
+      // ⏸️ Пауза при наведении/тапе
       const carousel = document.querySelector('.carousel');
-      if (carousel) {
-        carousel.addEventListener('mouseenter', () => clearInterval(autoPlayInterval));
-        carousel.addEventListener('mouseleave', startAutoPlay);
-      }
-      // Запуск
-      if (slides.length > 1) {
+      carousel?.addEventListener('mouseenter', () => clearInterval(autoPlayInterval));
+      carousel?.addEventListener('mouseleave', startAutoPlay);
+      // 📱 Оптимизация для тач-устройств
+      let touchStartX = 0;
+      carousel?.addEventListener('touchstart', (e) => {
+        touchStartX = e.touches[0].clientX;
+        clearInterval(autoPlayInterval);
+      }, {
+        passive: true
+      });
+      carousel?.addEventListener('touchend', (e) => {
+        const touchEndX = e.changedTouches[0].clientX;
+        const diff = touchStartX - touchEndX;
+        if (Math.abs(diff) > 50) { // Свайп > 50px
+          diff > 0 ? goToSlide(currentIndex + 1) : goToSlide(currentIndex - 1);
+        }
         startAutoPlay();
-      }
-      // 🎹 Поддержка клавиатуры (стрелки ← →)
+      }, {
+        passive: true
+      });
+      // ⌨️ Клавиатура
       document.addEventListener('keydown', (e) => {
         if (e.key === 'ArrowRight') goToSlide(currentIndex + 1);
         if (e.key === 'ArrowLeft') goToSlide(currentIndex - 1);
       });
+      // 🚀 Предзагрузка первых 3 слайдов сразу
+      slides.slice(0, 3).forEach(img => {
+        const preload = new Image();
+        preload.src = img.src;
+        img.classList.add('loaded');
+      });
+      // Запуск
+      if (slides.length > 1) startAutoPlay();
     });
   </script>
   <!-- 🖼️ МОДАЛЬНОЕ ОКНО ДЛЯ ЗУМА (ЛАЙТБОКС) -->
