@@ -3,7 +3,7 @@
 
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0">
   <meta name="description" content="Портфолио веб-дизайнера Руслана Беликова: веб-разработка, адаптивная вёрстка, SEO-оптимизация, видеомонтаж. Краснодар.">
   <meta property="og:title" content="RuSSoBeLLi | Портфолио">
   <meta property="og:image" content="URL-превью">
@@ -28,6 +28,11 @@
       })(window, document,'script','https://mc.yandex.ru/metrika/tag.js?id=109299391', 'ym');
 
       ym(109299391, 'init', {ssr:true, webvisor:true, clickmap:true, ecommerce:"dataLayer", referrer: document.referrer, url: location.href, accurateTrackBounce:true, trackLinks:true});
+      // При отправке формы
+      ym(109299391, 'reachGoal', 'form_submit');
+
+      // При клике на соцсети
+      ym(109299391, 'reachGoal', 'social_click');
   </script>
   <noscript><div><img src="https://mc.yandex.ru/watch/109299391" style="position:absolute; left:-9999px;" alt="" /></div></noscript>
   <!-- /Yandex.Metrika counter -->
@@ -194,7 +199,7 @@
       <div class="social-links">
 
         <!-- ВКонтакте -->
-        <a href="https://vk.com/ruxa1987" target="_blank" class="social-link vk" data- qr="img/Ruslan_VK.webp">
+        <a href="https://vk.com/ruxa1987" target="_blank" rel="noopener noreferrer"> class="social-link vk" data- qr="img/Ruslan_VK.webp">
           <span class="social-icon">VK</span>
           <span class="social-name">ВКонтакте</span>
           <span class="qr-tooltip">
@@ -204,7 +209,7 @@
         </a>
 
         <!-- Telegram -->
-        <a href="https://t.me/RussoBelli" target="_blank" class="social-link telegram" data-qr="img/Ruslan_TG.webp">
+        <a href="https://t.me/RussoBelli" target="_blank" rel="noopener noreferrer"> class="social-link telegram" data-qr="img/Ruslan_TG.webp">
           <span class="social-icon">TG</span>
           <span class="social-name">Telegram</span>
           <span class="qr-tooltip">
@@ -214,7 +219,7 @@
         </a>
 
         <!-- Макс (новая кнопка) -->
-        <a href="https://max.ru/u/f9LHodD0cOI0RNb6ylJRtaWKBAofYiSNwW_1MniFI71ResMPgGYodL_qNo0" target="_blank" class="social-link max" data-qr="img/Ruslan_MAX.webp">
+        <a href="https://max.ru/u/f9LHodD0cOI0RNb6ylJRtaWKBAofYiSNwW_1MniFI71ResMPgGYodL_qNo0" target="_blank" rel="noopener noreferrer"> class="social-link max" data-qr="img/Ruslan_MAX.webp">
           <span class="social-icon">MAX</span>
           <span class="social-name">Макс</span>
           <span class="qr-tooltip">
