@@ -935,6 +935,14 @@ html {
   object-fit: cover;
 
   border-radius: 0; /* Убираем скругление у картинки, оно есть у контейнера */
+  
+  /* Плавное появление изображений */
+  opacity: 0;
+  transition: opacity 0.2s ease;
+}
+
+.carousel-slide.loaded {
+    opacity: 1;
 }
 
 /* Кнопки навигации */
@@ -1434,15 +1442,15 @@ footer p {
     min-width: 44px;
     padding: 10px 12px;
   }
-  
+} 
   /* Учитываем "челку" на iPhone */
   @supports (padding: max(0px)) {
     body {
       padding-left: max(15px, env(safe-area-inset-left));
       padding-right: max(15px, env(safe-area-inset-right));
       padding-bottom: max(15px, env(safe-area-inset-bottom));
-    }
-  }
+    }  
+}
 
 
 
@@ -1591,10 +1599,11 @@ footer p {
   #portfolio tbody td:last-child a { background: #667eea; padding: 8px 20px; border-radius: 20px; color: white; text-decoration: none; display: inline-block; }
 
   /* 🎠 КАРУСЕЛЬ */
-  .carousel { aspect-ratio: 4/3 !important; min-height: 200px; }
+  .carousel { aspect-ratio: 4/3 !important; min-height: 200px; /* Убираем тяжёлый blur на мобильных */ backdrop-filter: none !important; -webkit-backdrop-filter: none !important; background: rgba(255, 255, 255, 0.95) !important; }
   .carousel-btn { width: 40px; height: 40px; font-size: 1.2rem; }
   .carousel-btn.prev { left: 10px; }
   .carousel-btn.next { right: 10px; }
+
 
   /* 🔍 ЛАЙТБОКС */
   .lightbox-image { max-width: 95%; max-height: 70vh; }
