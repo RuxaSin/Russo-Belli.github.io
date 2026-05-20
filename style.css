@@ -935,14 +935,6 @@ html {
   object-fit: cover;
 
   border-radius: 0; /* Убираем скругление у картинки, оно есть у контейнера */
-  
-  /* Плавное появление изображений */
-  opacity: 0;
-  transition: opacity 0.2s ease;
-}
-
-.carousel-slide.loaded {
-    opacity: 1;
 }
 
 /* Кнопки навигации */
