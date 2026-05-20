@@ -344,115 +344,73 @@
   </script>
 
   <script>
-    // 🎠 Оптимизированная карусель
+        // 🎠 Оптимизированная карусель
+        // 🎠 Карусель изображений — ТОЛЬКО РУЧНОЕ УПРАВЛЕНИЕ
     document.addEventListener('DOMContentLoaded', function() {
-      const track = document.querySelector('.carousel-track');
-      const slides = Array.from(track.children);
-      const nextBtn = document.querySelector('.carousel-btn.next');
-      const prevBtn = document.querySelector('.carousel-btn.prev');
-      const indicatorsContainer = document.querySelector('.carousel-indicators');
-      if (!track || slides.length === 0) return;
-      // Генерация индикаторов
-      if (indicatorsContainer) {
-        indicatorsContainer.innerHTML = '';
-        slides.forEach((_, i) => {
-          const dot = document.createElement('span');
-          dot.className = `indicator ${i === 0 ? 'active' : ''}`;
-          dot.dataset.slide = i;
-          indicatorsContainer.appendChild(dot);
-        });
-      }
-      const indicators = document.querySelectorAll('.indicator');
-      let currentIndex = 0;
-      let autoPlayInterval;
-      // 🎯 Плавный переход с предзагрузкой
-      function goToSlide(index) {
-        if (index < 0) index = slides.length - 1;
-        if (index >= slides.length) index = 0;
-        currentIndex = index;
-        track.style.transform = `translateX(-${currentIndex * 100}%)`;
-        // Обновляем индикаторы
-        indicators.forEach((ind, i) => {
-          ind.classList.toggle('active', i === currentIndex);
-        });
-        // 🔄 Предзагружаем соседние слайды
-        preloadAdjacentSlides(index);
-      }
-      // 📦 Предзагрузка соседних изображений
-      function preloadAdjacentSlides(index) {
-        const nextIdx = (index + 1) % slides.length;
-        const prevIdx = (index - 1 + slides.length) % slides.length;
-        [nextIdx, prevIdx].forEach(i => {
-          const img = slides[i];
-          if (img && !img.dataset.preloaded) {
-            const preload = new Image();
-            preload.src = img.src;
-            img.dataset.preloaded = 'true';
-          }
-        });
-      }
-      // 🎮 Обработчики
-      nextBtn?.addEventListener('click', () => {
-        goToSlide(currentIndex + 1);
-        resetAutoPlay();
-      });
-      prevBtn?.addEventListener('click', () => {
-        goToSlide(currentIndex - 1);
-        resetAutoPlay();
-      });
-      indicators.forEach((ind, i) => {
-        ind.addEventListener('click', () => {
-          goToSlide(i);
-          resetAutoPlay();
-        });
-      });
-      // ⏱️ Автопрокрутка (увеличил интервал для мобильных)
-      const isMobile = window.innerWidth <= 768;
-      const autoPlayDelay = isMobile ? 8000 : 5000;
-
-      function startAutoPlay() {
-        autoPlayInterval = setInterval(() => goToSlide(currentIndex + 1), autoPlayDelay);
-      }
-
-      function resetAutoPlay() {
-        clearInterval(autoPlayInterval);
-        startAutoPlay();
-      }
-      // ⏸️ Пауза при наведении/тапе
-      const carousel = document.querySelector('.carousel');
-      carousel?.addEventListener('mouseenter', () => clearInterval(autoPlayInterval));
-      carousel?.addEventListener('mouseleave', startAutoPlay);
-      // 📱 Оптимизация для тач-устройств
-      let touchStartX = 0;
-      carousel?.addEventListener('touchstart', (e) => {
-        touchStartX = e.touches[0].clientX;
-        clearInterval(autoPlayInterval);
-      }, {
-        passive: true
-      });
-      carousel?.addEventListener('touchend', (e) => {
-        const touchEndX = e.changedTouches[0].clientX;
-        const diff = touchStartX - touchEndX;
-        if (Math.abs(diff) > 50) { // Свайп > 50px
-          diff > 0 ? goToSlide(currentIndex + 1) : goToSlide(currentIndex - 1);
+        const track = document.querySelector('.carousel-track');
+        const slides = Array.from(track.children);
+        const nextBtn = document.querySelector('.carousel-btn.next');
+        const prevBtn = document.querySelector('.carousel-btn.prev');
+    
+        // Генерация индикаторов
+        const indicatorsContainer = document.querySelector('.carousel-indicators');
+        if (indicatorsContainer && slides.length > 0) {
+            indicatorsContainer.innerHTML = '';
+            slides.forEach((_, i) => {
+                const dot = document.createElement('span');
+                dot.className = `indicator ${i === 0 ? 'active' : ''}`;
+                dot.dataset.slide = i;
+                indicatorsContainer.appendChild(dot);
+            });
         }
-        startAutoPlay();
-      }, {
-        passive: true
-      });
-      // ⌨️ Клавиатура
-      document.addEventListener('keydown', (e) => {
-        if (e.key === 'ArrowRight') goToSlide(currentIndex + 1);
-        if (e.key === 'ArrowLeft') goToSlide(currentIndex - 1);
-      });
-      // 🚀 Предзагрузка первых 3 слайдов сразу
-      slides.slice(0, 3).forEach(img => {
-        const preload = new Image();
-        preload.src = img.src;
-        img.classList.add('loaded');
-      });
-      // Запуск
-      if (slides.length > 1) startAutoPlay();
+    
+        const indicators = document.querySelectorAll('.indicator');
+        let currentIndex = 0;
+    
+        // Переход к слайду
+        function goToSlide(index) {
+            if (index < 0) index = slides.length - 1;
+            if (index >= slides.length) index = 0;
+        
+            currentIndex = index;
+            track.style.transform = `translateX(-${currentIndex * 100}%)`;
+        
+            indicators.forEach((ind, i) => {
+                ind.classList.toggle('active', i === currentIndex);
+            });
+        }
+    
+        // 🔘 Обработчики кнопок (без resetAutoPlay!)
+        nextBtn?.addEventListener('click', () => goToSlide(currentIndex + 1));
+        prevBtn?.addEventListener('click', () => goToSlide(currentIndex - 1));
+    
+        // 🔘 Обработчики индикаторов
+        indicators.forEach((indicator, index) => {
+            indicator.addEventListener('click', () => goToSlide(index));
+        });
+    
+        // ⌨️ Поддержка клавиатуры
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'ArrowRight') goToSlide(currentIndex + 1);
+            if (e.key === 'ArrowLeft') goToSlide(currentIndex - 1);
+        });
+    
+        // 📱 Свайпы на мобильных (опционально, но удобно)
+        let touchStartX = 0;
+        const carousel = document.querySelector('.carousel');
+    
+        carousel?.addEventListener('touchstart', (e) => {
+            touchStartX = e.touches[0].clientX;
+        }, { passive: true });
+    
+        carousel?.addEventListener('touchend', (e) => {
+            const touchEndX = e.changedTouches[0].clientX;
+            const diff = touchStartX - touchEndX;
+        
+            if (Math.abs(diff) > 50) {
+                diff > 0 ? goToSlide(currentIndex + 1) : goToSlide(currentIndex - 1);
+            }
+        }, { passive: true });
     });
   </script>
   <!-- 🖼️ МОДАЛЬНОЕ ОКНО ДЛЯ ЗУМА (ЛАЙТБОКС) -->
