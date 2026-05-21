@@ -1,8 +1,5 @@
 User-agent: *
 Allow: /
-Sitemap: https://ruxasin.github.io/Russo-Belli.github.io/sitemap.xml
+Sitemap: https://ruxasin.github.io/sitemap.xml
 
-User-agent: Yandex
-Allow: /Russo-Belli.github.io/
 
-Sitemap: https://ruxasin.github.io/Russo-Belli.github.io/sitemap.xml
