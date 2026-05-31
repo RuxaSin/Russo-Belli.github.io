@@ -3,6 +3,7 @@
 
 <head>
   <meta charset="UTF-8">
+  <meta property="og:locale" content="ru_RU">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0">
   <meta name="description" content="Портфолио веб-дизайнера Руслана Беликова: веб-разработка, адаптивная вёрстка, SEO-оптимизация, видеомонтаж. Краснодар.">
   <meta name="yandex-verification" content="11726ab7c52d1b9b" />
@@ -25,7 +26,7 @@
   <meta name="twitter:image" content="https://ruxasin.github.io/img/Moya_AVA.webp">
   <title>RuSSoBeLLi | Портфолио веб-дизайнера</title>
   <link rel="stylesheet" href="style.css">
-  <link rel="preload" as="image" href="img/Moya_AVA.webp">
+  <link rel="preload" as="image" href="img/Moya_AVA.webp" imagesrcset="img/Moya_AVA.webp">
   <link rel="icon" href="favicon.ico">
   <link rel="icon" type="image/webp" href="img/Moya_AVA.webp">
 
@@ -262,7 +263,7 @@
         <h3> ВИДЕО </h3>
         <div class="video-wrapper">
           <!-- Вариант 1: YouTube/Vimeo (вставь свой ID видео) -->
-          <iframe src="https://www.youtube.com/embed/dQw4w9WgXcQ" title="Видео о проекте" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen>
+          <iframe src="https://www.youtube.com/embed/dQw4w9WgXcQ" loading="lazy" title="Видео о проекте" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen>
           </iframe>
         </div>
       </section>
@@ -508,7 +509,7 @@
   <div id="chat-window" class="chat-window">
     <div class="chat-header">
       <span>🤖 Помощник Руслана</span>
-      <button id="chat-close-btn">×</button>
+      <button id="chat-close-btn" aria-label="Закрыть чат">×</button>
     </div>
 
     <div class="chat-messages" id="chat-messages">
